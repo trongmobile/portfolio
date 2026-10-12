@@ -3,7 +3,7 @@ import type { Dictionary } from './en';
 /** Vietnamese UI copy. Same shape as `en.ts`. */
 export const vi: Dictionary = {
   site: {
-    title: "Trần Thiện Trong — Flutter Developer & Mobile Engineer",
+    title: "Trần Thiện Trong — Flutter Developer",
     description:
       "Portfolio của Trần Thiện Trong, Flutter Developer xây dựng sản phẩm di động cho giao thông công cộng, đô thị thông minh và giáo dục trực tuyến.",
     location: "TP. Hồ Chí Minh, Việt Nam",

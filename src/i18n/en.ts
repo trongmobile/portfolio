@@ -4,7 +4,7 @@
  */
 export const en = {
   site: {
-    title: "Trong Tran — Flutter Developer & Mobile Engineer",
+    title: "Trong Tran — Flutter Developer",
     description:
       "Portfolio of Trong Tran, a Flutter Developer building mobile products across public transportation, smart city solutions, and digital learning.",
     location: "Ho Chi Minh City, Vietnam",
