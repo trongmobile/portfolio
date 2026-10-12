@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState, type MouseEvent } from 'react';
 import { AnimatePresence, motion, useScroll, useSpring } from 'framer-motion';
-import { Download, Menu, X } from 'lucide-react';
+import { Command, Download, Menu, X } from 'lucide-react';
 import { siteConfig } from '@/data/siteConfig';
 import { navItems } from '@/data/navigation';
 import { t } from '@/i18n';
@@ -8,6 +8,9 @@ import { useActiveSection } from '@/hooks/useActiveSection';
 import { useScrolled } from '@/hooks/useScrolled';
 import { cn, publicUrl, scrollToId } from '@/lib/utils';
 import { ButtonLink } from '@/components/ui/Button';
+import { isMacLike, openCommandPalette } from '@/components/command/CommandPalette';
+import { toggleDevMode } from '@/lib/devMode';
+import { showToast } from '@/lib/toast';
 import { LanguageSwitch } from './LanguageSwitch';
 
 const sectionIds = navItems.map((item) => item.id);
@@ -17,6 +20,8 @@ export function Navbar() {
   const active = useActiveSection(sectionIds);
   const [open, setOpen] = useState(false);
   const toggleRef = useRef<HTMLButtonElement>(null);
+  // Touch-friendly way into dev mode: five quick taps on the logo.
+  const logoTaps = useRef<number[]>([]);
   const panelRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll();
@@ -76,6 +81,12 @@ export function Navbar() {
           onClick={(e) => {
             e.preventDefault();
             setOpen(false);
+            const now = Date.now();
+            logoTaps.current = [...logoTaps.current.filter((time) => now - time < 2000), now];
+            if (logoTaps.current.length >= 5) {
+              logoTaps.current = [];
+              showToast(toggleDevMode() ? t.toast.devModeOn : t.toast.devModeOff);
+            }
             window.scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
             history.replaceState(null, '', location.pathname + location.search);
           }}
@@ -117,6 +128,16 @@ export function Navbar() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={openCommandPalette}
+            aria-label={t.command.open}
+            aria-keyshortcuts={isMacLike() ? 'Meta+K' : 'Control+K'}
+            className="hidden min-h-[40px] items-center gap-1.5 rounded-full border border-white/[0.1] bg-white/[0.03] px-3 font-mono text-xs text-ink-400 transition-colors hover:border-white/20 hover:text-white lg:inline-flex"
+          >
+            {isMacLike() ? <Command className="h-3.5 w-3.5" aria-hidden="true" /> : <span aria-hidden="true">Ctrl</span>}
+            <span aria-hidden="true">K</span>
+          </button>
           <LanguageSwitch />
           {cvHref && (
             <ButtonLink

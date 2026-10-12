@@ -63,13 +63,64 @@
   .bg-noise-fade {
     mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 30%, transparent 75%);
   }
+
+  /*
+   * Cursor-following glow + lit border for cards. Pair with `useSpotlight`,
+   * which sets --spot-x / --spot-y. Mouse-only: touch devices never show it.
+   */
+  .spotlight {
+    position: relative;
+    isolation: isolate;
+  }
+  .spotlight::before,
+  .spotlight::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 300ms ease;
+  }
+  /* Soft light on the surface. */
+  .spotlight::after {
+    z-index: 1;
+    background: radial-gradient(
+      420px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+      rgb(77 124 255 / 0.14),
+      transparent 60%
+    );
+  }
+  /* Brighter edge near the pointer, drawn only in the 1px border ring. */
+  .spotlight::before {
+    z-index: 2;
+    padding: 1px;
+    background: radial-gradient(
+      280px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+      rgb(124 155 255 / 0.85),
+      transparent 70%
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .spotlight:hover::before,
+    .spotlight:hover::after {
+      opacity: 1;
+    }
+  }
 }
 
 /* Native <dialog> animation. */
-dialog.project-dialog[open] {
+dialog.project-dialog[open],
+dialog.command-dialog[open] {
   animation: dialog-in 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-dialog.project-dialog::backdrop {
+dialog.project-dialog::backdrop,
+dialog.command-dialog::backdrop {
   background: rgb(5 5 7 / 0.72);
   backdrop-filter: blur(4px);
   animation: backdrop-in 220ms ease-out;
@@ -85,6 +136,28 @@ dialog.project-dialog::backdrop {
   from {
     opacity: 0;
   }
+}
+
+/*
+ * Dev mode easter egg: terminal-green accent, monospace headings and CRT
+ * scanlines. The filter sits on each top-level element rather than <body> so
+ * the fixed navbar keeps working.
+ */
+html[data-mode='dev'] #root > * {
+  filter: hue-rotate(-95deg) saturate(1.15);
+}
+html[data-mode='dev'] :is(h1, h2, h3, h4) {
+  @apply font-mono tracking-tight;
+}
+html[data-mode='dev']::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at center, transparent 60%, rgb(0 0 0 / 0.35) 100%),
+    repeating-linear-gradient(to bottom, rgb(0 0 0 / 0.16) 0 1px, transparent 1px 3px);
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -2,6 +2,7 @@ import { ArrowUpRight } from 'lucide-react';
 import type { Project } from '@/types';
 import { t } from '@/i18n';
 import { Tag } from '@/components/ui/Tag';
+import { useSpotlight } from '@/hooks/useSpotlight';
 import { PlatformList } from './PlatformList';
 import { ProjectMedia } from './ProjectMedia';
 import { StoreLinks } from './StoreLinks';
@@ -16,11 +17,13 @@ const MAX_TAGS = 4;
 export function ProjectCard({ project, onOpen }: ProjectCardProps) {
   const titleId = `project-${project.id}-title`;
   const extraTech = project.technologies.length - MAX_TAGS;
+  const spotlight = useSpotlight();
 
   return (
     <article
       aria-labelledby={titleId}
-      className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/[0.07] bg-ink-900/60 transition-[border-color,transform,box-shadow] duration-300 hover:-translate-y-1 hover:border-white/[0.16] hover:shadow-[0_30px_60px_-30px_rgb(0_0_0/0.8)] has-[:focus-visible]:border-accent-500/60"
+      onPointerMove={spotlight}
+      className="spotlight group relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/[0.07] bg-ink-900/60 transition-[border-color,transform,box-shadow] duration-300 hover:-translate-y-1 hover:border-white/[0.16] hover:shadow-[0_30px_60px_-30px_rgb(0_0_0/0.8)] has-[:focus-visible]:border-accent-500/60"
     >
       <ProjectMedia
         project={project}

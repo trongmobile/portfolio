@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 import { Reveal } from '@/components/ui/Reveal';
+import { TextReveal } from '@/components/ui/TextReveal';
 
 interface SectionProps {
   id: string;
@@ -53,7 +54,7 @@ export function SectionHeader({ id, eyebrow, title, description, tone = 'dark', 
           dark ? 'text-white' : 'text-ink-950',
         )}
       >
-        {title}
+        <TextReveal text={title} inView delay={0.1} />
       </h2>
       {description && (
         <p className={cn('mt-5 text-pretty text-lg leading-relaxed', dark ? 'text-ink-400' : 'text-paper-500')}>

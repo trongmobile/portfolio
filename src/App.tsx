@@ -12,6 +12,11 @@ import { Approach } from '@/components/sections/Approach';
 import { Contact } from '@/components/sections/Contact';
 import { Footer } from '@/components/layout/Footer';
 import { BackToTop } from '@/components/ui/BackToTop';
+import { Toaster } from '@/components/ui/Toaster';
+import { CommandPalette } from '@/components/command/CommandPalette';
+import { useKonami } from '@/hooks/useKonami';
+import { toggleDevMode } from '@/lib/devMode';
+import { showToast } from '@/lib/toast';
 
 export default function App() {
   // Re-renders the whole tree when the language changes.
@@ -22,6 +27,8 @@ export default function App() {
     document.title = t.site.title;
     document.querySelector('meta[name="description"]')?.setAttribute('content', t.site.description);
   }, [locale]);
+
+  useKonami(() => showToast(toggleDevMode() ? t.toast.devModeOn : t.toast.devModeOff));
 
   return (
     <MotionConfig reducedMotion="user">
@@ -38,6 +45,8 @@ export default function App() {
       </main>
       <Footer />
       <BackToTop />
+      <CommandPalette />
+      <Toaster />
     </MotionConfig>
   );
 }

@@ -1,5 +1,6 @@
 import { highlights, releaseChannels } from '@/data/highlights';
 import { t } from '@/i18n';
+import { CountUp } from '@/components/ui/CountUp';
 import { Reveal } from '@/components/ui/Reveal';
 import { cn } from '@/lib/utils';
 
@@ -19,7 +20,9 @@ export function Highlights() {
             {highlights.map((item) => (
               <div key={item.id} className="flex flex-col bg-ink-950 p-6 sm:p-8">
                 <dt className="order-2 mt-3 text-[0.95rem] font-medium leading-snug text-ink-200">{item.label}</dt>
-                <dd className="order-1 text-4xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">{item.value}</dd>
+                <dd className="order-1 text-4xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">
+                  <CountUp value={item.value} />
+                </dd>
                 {item.note && <dd className="order-3 mt-2 text-sm leading-relaxed text-ink-400">{item.note}</dd>}
               </div>
             ))}

@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import type { Project } from '@/types';
 import { t } from '@/i18n';
 import { Tag } from '@/components/ui/Tag';
+import { useSpotlight } from '@/hooks/useSpotlight';
 import { PlatformList } from './PlatformList';
 import { StoreLinks } from './StoreLinks';
 
@@ -10,6 +11,7 @@ interface MoreProjectsProps {
 }
 
 export function MoreProjects({ projects }: MoreProjectsProps) {
+  const spotlight = useSpotlight();
   if (projects.length === 0) return null;
 
   return (
@@ -33,7 +35,7 @@ export function MoreProjects({ projects }: MoreProjectsProps) {
               exit={{ opacity: 0, scale: 0.98 }}
               transition={{ duration: 0.25 }}
             >
-              <article className="flex h-full flex-col rounded-2xl border border-white/[0.07] bg-white/[0.015] p-6 transition-colors duration-300 hover:border-white/[0.14] hover:bg-white/[0.03]">
+              <article onPointerMove={spotlight} className="spotlight flex h-full flex-col rounded-2xl border border-white/[0.07] bg-white/[0.015] p-6 transition-colors duration-300 hover:border-white/[0.14] hover:bg-white/[0.03]">
                 <p className="eyebrow text-ink-400">{project.domain}</p>
                 <h4 className="mt-3 text-lg font-semibold tracking-tight text-white">{project.name}</h4>
                 <p className="mt-2 text-sm leading-relaxed text-ink-400">{project.summary}</p>

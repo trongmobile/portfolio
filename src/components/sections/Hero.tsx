@@ -4,6 +4,7 @@ import { siteConfig } from '@/data/siteConfig';
 import { t } from '@/i18n';
 import { scrollToId } from '@/lib/utils';
 import { ButtonLink } from '@/components/ui/Button';
+import { TextReveal, revealDuration } from '@/components/ui/TextReveal';
 import { HeroVisual } from './HeroVisual';
 
 const ease = [0.2, 0.8, 0.2, 1] as const;
@@ -33,13 +34,15 @@ export function Hero() {
             {t.hero.eyebrow}
           </motion.p>
 
-          <motion.h1
-            {...fadeUp(0.08)}
+          <h1
             id="hero-title"
             className="mt-6 text-balance text-[2.6rem] font-semibold leading-[1.02] tracking-[-0.04em] text-white sm:text-display lg:text-display-lg"
           >
-            {t.hero.headlineLead} <span className="text-ink-400">{t.hero.headlineTail}</span>
-          </motion.h1>
+            <TextReveal text={t.hero.headlineLead} delay={0.08} />{' '}
+            <span className="text-ink-400">
+              <TextReveal text={t.hero.headlineTail} delay={0.08 + revealDuration(t.hero.headlineLead)} />
+            </span>
+          </h1>
 
           <motion.p {...fadeUp(0.16)} className="mt-7 max-w-xl text-pretty text-lg leading-relaxed text-ink-400">
             {t.hero.intro}
