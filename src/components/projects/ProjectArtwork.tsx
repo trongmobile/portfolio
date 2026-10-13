@@ -218,7 +218,7 @@ export function ProjectArtwork({ kind, className }: ProjectArtworkProps) {
   return (
     <div aria-hidden="true" data-placeholder="illustration" className={cn('relative overflow-hidden bg-ink-900', className)}>
       <div className="bg-grid absolute inset-0 opacity-60 [mask-image:radial-gradient(ellipse_at_center,#000_20%,transparent_75%)]" />
-      <div className="absolute -bottom-24 left-1/2 h-48 w-2/3 -translate-x-1/2 rounded-full bg-accent-600/10 blur-3xl" />
+      <div className="absolute -bottom-40 left-1/2 h-80 w-[90%] -translate-x-1/2 bg-[radial-gradient(closest-side,rgb(47_95_232/0.1),transparent)]" />
       <svg viewBox="0 0 400 240" className="relative h-full w-full" preserveAspectRatio="xMidYMid meet" fill="none">
         <Art />
       </svg>

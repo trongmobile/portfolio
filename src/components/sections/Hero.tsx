@@ -1,35 +1,47 @@
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowDown, ArrowRight, MapPin } from 'lucide-react';
 import { siteConfig } from '@/data/siteConfig';
 import { t } from '@/i18n';
 import { scrollToId } from '@/lib/utils';
+import { usePauseOffscreen } from '@/hooks/usePauseOffscreen';
 import { ButtonLink } from '@/components/ui/Button';
 import { TextReveal, revealDuration } from '@/components/ui/TextReveal';
 import { HeroVisual } from './HeroVisual';
 
 const ease = [0.2, 0.8, 0.2, 1] as const;
 
-function fadeUp(delay: number) {
+/**
+ * `transform` is animated as a string rather than `y`/`scale`: Framer Motion then
+ * runs it on the compositor (WAAPI), so the intro stays smooth while the page is
+ * still busy loading. `rise` is 0 under reduced motion.
+ */
+function fadeUp(delay: number, rise: number) {
   return {
-    initial: { opacity: 0, y: 18 },
-    animate: { opacity: 1, y: 0 },
+    initial: { opacity: 0, transform: `translateY(${rise}px)` },
+    animate: { opacity: 1, transform: 'translateY(0px)' },
     transition: { duration: 0.7, delay, ease },
   };
 }
 
 export function Hero() {
+  const ref = useRef<HTMLElement>(null);
+  const reduced = useReducedMotion();
+  const rise = reduced ? 0 : 18;
+  usePauseOffscreen(ref);
+
   return (
-    <section id="top" aria-labelledby="hero-title" className="relative overflow-hidden bg-ink-950 pt-16">
-      {/* Background: faint grid + a single restrained glow */}
+    <section ref={ref} id="top" aria-labelledby="hero-title" className="relative overflow-hidden bg-ink-950 pt-16">
+      {/* Background: faint grid + a single restrained glow (a gradient: a large blur filter is costly to repaint) */}
       <div aria-hidden="true" className="bg-grid bg-noise-fade pointer-events-none absolute inset-0" />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -top-40 right-[-10%] h-[36rem] w-[36rem] rounded-full bg-accent-600/[0.12] blur-[120px]"
+        className="pointer-events-none absolute -top-[28rem] right-[calc(-10%_-_18rem)] h-[72rem] w-[72rem] bg-[radial-gradient(closest-side,rgb(47_95_232/0.11),rgb(47_95_232/0.055)_50%,transparent)]"
       />
 
       <div className="container-page relative grid items-center gap-14 pb-20 pt-16 sm:pt-24 lg:min-h-[calc(100svh-4rem)] lg:grid-cols-12 lg:gap-8 lg:pb-24 lg:pt-12">
         <div className="lg:col-span-7">
-          <motion.p {...fadeUp(0)} className="eyebrow flex items-center gap-3 text-accent-400">
+          <motion.p {...fadeUp(0, rise)} className="eyebrow flex items-center gap-3 text-accent-400">
             <span aria-hidden="true" className="h-px w-6 bg-accent-400/60" />
             {t.hero.eyebrow}
           </motion.p>
@@ -44,11 +56,11 @@ export function Hero() {
             </span>
           </h1>
 
-          <motion.p {...fadeUp(0.16)} className="mt-7 max-w-xl text-pretty text-lg leading-relaxed text-ink-400">
+          <motion.p {...fadeUp(0.16, rise)} className="mt-7 max-w-xl text-pretty text-lg leading-relaxed text-ink-400">
             {t.hero.intro}
           </motion.p>
 
-          <motion.div {...fadeUp(0.24)} className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <motion.div {...fadeUp(0.24, rise)} className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
             <ButtonLink
               href="#projects"
               onClick={(e) => {
@@ -71,7 +83,7 @@ export function Hero() {
             </ButtonLink>
           </motion.div>
 
-          <motion.div {...fadeUp(0.32)} className="mt-12 flex flex-col gap-4 border-t border-white/[0.07] pt-6">
+          <motion.div {...fadeUp(0.32, rise)} className="mt-12 flex flex-col gap-4 border-t border-white/[0.07] pt-6">
             <ul className="flex flex-wrap items-center gap-y-1 font-mono text-xs text-ink-300" aria-label={t.hero.expertiseLabel}>
               {t.hero.expertise.map((item, i) => (
                 <li key={item} className="flex items-center">
@@ -94,8 +106,8 @@ export function Hero() {
         </div>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, transform: reduced ? 'scale(1)' : 'scale(0.96)' }}
+          animate={{ opacity: 1, transform: 'scale(1)' }}
           transition={{ duration: 0.9, delay: 0.2, ease }}
           className="lg:col-span-5"
         >

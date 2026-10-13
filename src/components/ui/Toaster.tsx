@@ -15,7 +15,7 @@ export function Toaster() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 8, scale: 0.98 }}
             transition={{ type: 'spring', stiffness: 420, damping: 32 }}
-            className="rounded-full border border-white/10 bg-ink-850/95 px-4 py-2.5 font-mono text-xs text-white shadow-xl shadow-black/50 backdrop-blur"
+            className="rounded-full border border-white/10 bg-ink-850 px-4 py-2.5 font-mono text-xs text-white shadow-xl shadow-black/50"
           >
             {toast.message}
           </motion.p>

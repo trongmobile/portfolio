@@ -60,12 +60,9 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        'fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-300',
-        open
-          ? 'border-b border-white/[0.07] bg-ink-950'
-          : solid
-            ? 'border-b border-white/[0.07] bg-ink-950/90 backdrop-blur-xl backdrop-saturate-150'
-            : 'border-b border-transparent bg-transparent',
+        // Solid rather than frosted: a backdrop blur on a fixed header is recomputed on every scroll frame.
+        'fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300',
+        solid ? 'border-white/[0.07] bg-ink-950' : 'border-transparent bg-transparent',
       )}
     >
       <a

@@ -114,6 +114,15 @@
   }
 }
 
+/*
+ * Decorative loops stop while their section is off screen (see usePauseOffscreen).
+ * !important: `motion-safe:animate-*` utilities are emitted later and their
+ * `animation` shorthand would reset the play state.
+ */
+[data-offscreen] * {
+  animation-play-state: paused !important;
+}
+
 /* Native <dialog> animation. */
 dialog.project-dialog[open],
 dialog.command-dialog[open] {

@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import { motion, type Variants } from 'framer-motion';
+import { motion, useReducedMotion, type Variants } from 'framer-motion';
 
 interface TextRevealProps {
   text: string;
@@ -10,17 +10,21 @@ interface TextRevealProps {
   inView?: boolean;
 }
 
+// A `transform` string (not `y`) lets Framer Motion run each word on the compositor (WAAPI).
 const word: Variants = {
-  hidden: { y: '110%' },
-  visible: { y: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { transform: 'translateY(110%)' },
+  visible: { transform: 'translateY(0%)', transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } },
 };
 
 /**
  * Masked word-by-word reveal: each word rises from behind its own baseline.
  * Words stay real text, so wrapping, selection and screen readers are unaffected.
- * Under reduced motion `MotionConfig` skips the transform and words appear at once.
+ * Under reduced motion the text renders as-is.
  */
 export function TextReveal({ text, delay = 0, stagger = 0.045, inView = false }: TextRevealProps) {
+  const reduced = useReducedMotion();
+  if (reduced) return <>{text}</>;
+
   const words = text.split(' ');
   const trigger = inView
     ? { whileInView: 'visible', viewport: { once: true, margin: '0px 0px -10% 0px' } }

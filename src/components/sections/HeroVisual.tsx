@@ -79,7 +79,7 @@ export function HeroVisual() {
           className="absolute motion-safe:animate-float"
           style={{ left: node.x, top: node.y, animationDelay: node.delay }}
         >
-          <div className="flex items-center gap-2 rounded-full border border-white/10 bg-ink-900/90 px-3 py-1.5 font-mono text-[0.68rem] text-ink-300 shadow-lg shadow-black/40 backdrop-blur">
+          <div className="flex items-center gap-2 rounded-full border border-white/10 bg-ink-900 px-3 py-1.5 font-mono text-[0.68rem] text-ink-300 shadow-lg shadow-black/40">
             <span className="h-1.5 w-1.5 rounded-full bg-accent-500" />
             {node.label}
           </div>
