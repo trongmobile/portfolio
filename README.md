@@ -91,7 +91,7 @@ Projects without screenshots show an abstract SVG illustration (`src/components/
 
 ### Highlights
 
-Every figure in `src/data/highlights.ts` comes from the CV and carries a `note` stating its scope. For example, 100K+ is labelled as a combined historical figure across products. Delete an entry to hide it, and the grid adapts.
+Every figure in `src/data/highlights.ts` comes from the CV and carries a `note` stating its scope. For example, 1M+ is labelled as a combined historical figure across products. Delete an entry to hide it, and the grid adapts.
 
 ### Adding Vietnamese
 

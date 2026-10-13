@@ -20,7 +20,7 @@ const experienceContent: Translatable<ExperienceItem[]> = [
         'Integrated Firebase, REST APIs, WebSocket and QR / POS payment solutions.',
         'Perform code reviews, sprint planning and technical mentoring, including supporting an intern.',
         'Publish applications to Google Play and the App Store.',
-        'Delivered products that together exceed 100,000 downloads.',
+        'Delivered products that together exceed 1,000,000 downloads.',
         'Collaborate with cross-functional teams of 15+ members.',
       ],
       vi: [
@@ -30,7 +30,7 @@ const experienceContent: Translatable<ExperienceItem[]> = [
         'Tích hợp Firebase, REST API, WebSocket và các giải pháp thanh toán QR / POS.',
         'Thực hiện code review, lập kế hoạch sprint và hướng dẫn kỹ thuật, bao gồm hỗ trợ thực tập sinh.',
         'Phát hành ứng dụng lên Google Play và App Store.',
-        'Triển khai các sản phẩm với tổng cộng hơn 100.000 lượt tải.',
+        'Triển khai các sản phẩm với tổng cộng hơn 1.000.000 lượt tải.',
         'Phối hợp với các nhóm liên chức năng hơn 15 thành viên.',
       ],
     },

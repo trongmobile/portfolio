@@ -51,9 +51,9 @@ export const vi: Dictionary = {
     eyebrow: "Giới thiệu",
     title: "Kỹ sư Flutter quan tâm đến toàn bộ sản phẩm.",
     paragraphs: [
-      "Tôi là Flutter Developer tại FPT IS với hơn năm năm kinh nghiệm, phần lớn thời gian dành cho việc phát triển các ứng dụng di động đa nền tảng mà nhiều người sử dụng hằng ngày — vé metro, thông tin giao thông trực tuyến, theo dõi xe buýt, tự phục vụ nhân sự và học trực tuyến.",
+      "Tôi là Flutter Developer tại FPT IS với hơn năm năm kinh nghiệm, phần lớn thời gian dành cho việc phát triển các ứng dụng di động đa nền tảng mà nhiều người sử dụng hằng ngày — vé metro, thông tin giao thông trực tuyến, theo dõi xe buýt, nhân sự và học trực tuyến.",
       "Tôi chú trọng kiến trúc dễ bảo trì: phân tầng rõ ràng với Bloc và Clean Architecture, quản lý trạng thái nhất quán, tích hợp cẩn thận với REST API, WebSocket, Firebase và các dịch vụ thanh toán. Tôi đưa ứng dụng đi từ yêu cầu ban đầu đến khi phát hành trên Google Play và App Store.",
-      "Tôi làm việc chặt chẽ với các nhóm backend, thiết kế, QA và sản phẩm, dẫn dắt một nhóm Flutter nhỏ, đồng thời dành nhiều thời gian cho code review và hướng dẫn thành viên. Tôi muốn xây dựng phần mềm ổn định, dễ thay đổi và thực sự hữu ích với người dùng.",
+      "Tôi làm việc chặt chẽ với Backend, Designer, QA, PM và PO, dẫn dắt một nhóm Flutter nhỏ, đồng thời dành nhiều thời gian cho code review và hướng dẫn thành viên. Tôi muốn xây dựng phần mềm ổn định, dễ thay đổi và thực sự hữu ích với người dùng.",
     ],
     factsTitle: "Tóm tắt",
     facts: {

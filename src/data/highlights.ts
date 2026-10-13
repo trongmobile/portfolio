@@ -22,12 +22,12 @@ const content: Translatable<Highlight[]> = [
     id: 'collaboration',
     value: '15+',
     label: { en: 'Members in cross-functional product teams', vi: 'Thành viên trong các nhóm sản phẩm liên chức năng' },
-    note: { en: 'Backend, design, QA and product', vi: 'Backend, thiết kế, QA và sản phẩm' },
+    note: 'Backend, Designer, QA, PM, PO',
   },
   {
     // Portfolio-wide historical figure from the CV — not a per-app number.
     id: 'downloads',
-    value: '100K+',
+    value: '1M+',
     label: { en: 'Downloads across delivered products', vi: 'Lượt tải trên các sản phẩm đã triển khai' },
     note: { en: 'Combined, historical figure across projects', vi: 'Tổng cộng qua các dự án' },
   },
