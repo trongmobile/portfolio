@@ -22,7 +22,7 @@ const content: Translatable<Highlight[]> = [
     id: 'collaboration',
     value: '15+',
     label: { en: 'Members in cross-functional product teams', vi: 'Thành viên trong các nhóm sản phẩm liên chức năng' },
-    note: 'Backend, Designer, QA, PM, PO',
+    note: 'BA, Designer, Backend, QA, PM, PO',
   },
   {
     // Portfolio-wide historical figure from the CV — not a per-app number.

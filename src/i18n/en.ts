@@ -54,7 +54,7 @@ export const en = {
     paragraphs: [
       "I’m a Flutter Developer at FPT IS with more than five years of professional experience, most of it spent shipping cross-platform mobile apps that people rely on every day — metro ticketing, live traffic information, public bus tracking, HRM and online learning.",
       "My focus is maintainable architecture: clear layers with Bloc and Clean Architecture, predictable state, and careful integration with REST APIs, WebSocket streams, Firebase and payment services. I take apps from requirements through Google Play and App Store releases.",
-      "I work closely with Backend, Designer, QA, PM and PO, lead a small Flutter team, and spend real time on code reviews and mentoring. I care about building software that stays reliable, easy to change, and genuinely useful to the people who use it.",
+      "I work closely with BA, Designer, Backend, QA, PM and PO, lead a small Flutter team, and spend real time on code reviews and mentoring. I care about building software that stays reliable, easy to change, and genuinely useful to the people who use it.",
     ],
     factsTitle: "At a glance",
     facts: {
