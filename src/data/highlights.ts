@@ -39,4 +39,4 @@ onLocaleChange(() => {
 });
 
 /** Release channels listed in the CV. */
-export const releaseChannels = ['Google Play', 'App Store', 'Web', 'Zalo Mini App'];
+export const releaseChannels = ['Google Play', 'App Store', 'Website', 'Zalo Mini App'];

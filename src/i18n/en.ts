@@ -154,7 +154,7 @@ export const en = {
   platforms: {
     android: "Android",
     ios: "iOS",
-    web: "Web",
+    web: "Website",
     zalo: "Zalo Mini App",
   },
   links: {
