@@ -81,8 +81,8 @@ const experienceContent: Translatable<ExperienceItem[]> = [
 const educationContent: Translatable<EducationItem[]> = [
   {
     institution: {
-      en: 'University of Information Technology (UIT)',
-      vi: 'Trường Đại học Công nghệ Thông tin (UIT)',
+      en: 'University of Information Technology (UIT – VNU-HCM)',
+      vi: 'Trường Đại học Công nghệ Thông tin (UIT – VNU-HCM)',
     },
     degree: { en: 'Bachelor of Computer Science', vi: 'Cử nhân Khoa học Máy tính' },
     period: '2016 – 2020',
