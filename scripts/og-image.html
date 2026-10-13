@@ -1,0 +1,274 @@
+<!doctype html>
+<!--
+  Source for public/og-image.png (1200×630). Render with:
+    npm run og:image
+  Uses the site's fonts (from node_modules) and Tailwind palette.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<style>
+  @font-face {
+    font-family: 'Inter';
+    src: url('../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2') format('woff2');
+    font-weight: 100 900;
+  }
+  @font-face {
+    font-family: 'JetBrains Mono';
+    src: url('../node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2') format('woff2');
+    font-weight: 100 800;
+  }
+
+  :root {
+    --ink-950: #09090b; --ink-900: #0e0e11; --ink-850: #131317; --ink-800: #1a1a1f;
+    --ink-700: #26262d; --ink-600: #3a3a43; --ink-500: #62626d; --ink-400: #9696a1;
+    --ink-300: #c2c2ca; --ink-200: #e0e0e5; --paper: #f4f2ed;
+    --accent-300: #a9bdff; --accent-400: #7c9bff; --accent-500: #4d7cff; --accent-600: #2f5fe8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; background: var(--ink-950); }
+  body { font-family: 'Inter', sans-serif; color: #fff; -webkit-font-smoothing: antialiased; }
+
+  .canvas { position: relative; width: 1200px; height: 630px; overflow: hidden; }
+
+  /* Background: glow + fading grid */
+  .glow {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(520px 420px at 930px 300px, rgb(77 124 255 / 0.30), transparent 70%),
+      radial-gradient(380px 300px at 1120px 40px, rgb(124 155 255 / 0.16), transparent 70%),
+      radial-gradient(500px 360px at 120px 640px, rgb(47 95 232 / 0.10), transparent 70%);
+  }
+  .grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgb(255 255 255 / 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(255 255 255 / 0.045) 1px, transparent 1px);
+    background-size: 48px 48px;
+    background-position: -1px -1px;
+    -webkit-mask-image: radial-gradient(640px 520px at 900px 300px, #000 20%, transparent 80%);
+  }
+
+  /* Left column */
+  .left { position: absolute; left: 72px; top: 64px; bottom: 64px; width: 600px; display: flex; flex-direction: column; }
+  .brand { display: flex; align-items: center; gap: 14px; }
+  .brand svg { width: 44px; height: 44px; }
+  .brand span { font-family: 'JetBrains Mono', monospace; font-size: 15px; letter-spacing: 0.08em; color: var(--ink-400); }
+
+  .eyebrow {
+    margin-top: 52px; align-self: flex-start;
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 8px 16px 8px 14px; border-radius: 999px;
+    border: 1px solid rgb(124 155 255 / 0.28); background: rgb(77 124 255 / 0.10);
+    font-family: 'JetBrains Mono', monospace; font-size: 15px; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-300);
+  }
+  .eyebrow i { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-500); box-shadow: 0 0 0 4px rgb(77 124 255 / 0.22), 0 0 14px var(--accent-500); }
+
+  h1 { margin-top: 22px; font-size: 106px; font-weight: 750; line-height: 0.98; letter-spacing: -0.05em; color: #fff; }
+  h1 em { font-style: normal; color: var(--accent-500); }
+
+  .tagline { margin-top: 22px; font-size: 29px; line-height: 1.3; font-weight: 450; letter-spacing: -0.015em; color: var(--ink-400); max-width: 560px; }
+  .tagline b { font-weight: 550; color: var(--ink-200); }
+
+  .stats { margin-top: auto; display: flex; gap: 0; }
+  .stat { padding-right: 34px; margin-right: 34px; border-right: 1px solid rgb(255 255 255 / 0.10); }
+  .stat:last-child { border-right: 0; margin-right: 0; padding-right: 0; }
+  .stat strong { display: block; font-size: 44px; font-weight: 700; letter-spacing: -0.04em; line-height: 1; color: #fff; }
+  .stat strong sup { font-size: 0.62em; vertical-align: 0.42em; margin-left: 1px; color: var(--accent-400); }
+  .stat span { display: block; margin-top: 10px; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-400); }
+
+  /* Phones */
+  .phone {
+    position: absolute; width: 268px; height: 560px; padding: 9px;
+    border-radius: 44px; background: linear-gradient(160deg, #2a2a32, #121216 40%, #0b0b0e);
+    box-shadow: 0 0 0 1px rgb(255 255 255 / 0.10), inset 0 0 0 1px rgb(255 255 255 / 0.06), 0 50px 90px -30px rgb(0 0 0 / 0.95), 0 30px 60px -20px rgb(20 40 120 / 0.45);
+  }
+  .screen { position: relative; height: 100%; border-radius: 36px; overflow: hidden; background: linear-gradient(180deg, var(--ink-800), var(--ink-900) 55%); }
+  .island { position: absolute; top: 10px; left: 50%; width: 82px; height: 24px; margin-left: -41px; border-radius: 999px; background: #000; z-index: 3; }
+  .status { display: flex; justify-content: space-between; padding: 14px 24px 0; font-size: 12px; font-weight: 600; color: var(--ink-200); }
+
+  .phone.back { left: 694px; top: 118px; transform: rotate(-11deg); opacity: 0.92; }
+  .phone.back::after { content: ''; position: absolute; inset: 0; border-radius: 44px; background: linear-gradient(90deg, rgb(9 9 11 / 0.45), rgb(9 9 11 / 0.08)); }
+  .phone.front { left: 872px; top: 58px; transform: rotate(7deg); }
+
+  /* Front phone: live bus tracking */
+  .app-head { padding: 22px 18px 0; display: flex; align-items: center; justify-content: space-between; }
+  .app-head h3 { font-size: 19px; font-weight: 700; letter-spacing: -0.02em; }
+  .app-head small { display: block; margin-top: 3px; font-size: 11px; color: var(--ink-400); font-weight: 500; }
+  .live { display: inline-flex; align-items: center; gap: 6px; padding: 5px 9px; border-radius: 999px; background: rgb(77 124 255 / 0.16); color: var(--accent-300); font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.08em; }
+  .live i { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-400); box-shadow: 0 0 8px var(--accent-400); }
+
+  .map { margin: 14px 12px 0; height: 230px; border-radius: 22px; overflow: hidden; position: relative; background: #111116; border: 1px solid rgb(255 255 255 / 0.06); }
+  .map svg { position: absolute; inset: 0; }
+
+  .sheet { margin: 12px 12px 0; padding: 14px 14px 12px; border-radius: 20px; background: rgb(255 255 255 / 0.045); border: 1px solid rgb(255 255 255 / 0.06); }
+  .sheet .row { display: flex; align-items: flex-end; justify-content: space-between; }
+  .sheet label { font-size: 11px; color: var(--ink-400); font-weight: 500; }
+  .sheet .eta { font-size: 30px; font-weight: 750; letter-spacing: -0.04em; line-height: 1; margin-top: 4px; }
+  .sheet .eta span { font-size: 15px; font-weight: 600; color: var(--ink-400); margin-left: 3px; letter-spacing: 0; }
+  .bus-pill { padding: 6px 10px; border-radius: 10px; background: var(--accent-500); font-size: 13px; font-weight: 700; box-shadow: 0 6px 18px -4px rgb(77 124 255 / 0.7); }
+  .progress { margin-top: 12px; height: 5px; border-radius: 999px; background: rgb(255 255 255 / 0.08); overflow: hidden; }
+  .progress i { display: block; width: 68%; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--accent-600), var(--accent-300)); }
+  .stops { margin-top: 12px; display: grid; gap: 9px; }
+  .stops div { display: flex; align-items: center; gap: 9px; }
+  .stops b { width: 8px; height: 8px; border-radius: 50%; border: 2px solid var(--accent-400); }
+  .stops div:nth-child(2) b { border-color: var(--ink-500); }
+  .stops s { height: 6px; border-radius: 999px; background: rgb(255 255 255 / 0.16); text-decoration: none; }
+
+  /* Back phone: e-ticket */
+  .ticket { margin: 30px 16px 0; border-radius: 22px; padding: 18px 16px 16px; background: linear-gradient(160deg, var(--accent-600), #1d3a9e 70%); position: relative; }
+  .ticket .bar { height: 7px; border-radius: 999px; background: rgb(255 255 255 / 0.55); }
+  .ticket .bar.dim { background: rgb(255 255 255 / 0.25); }
+  .qr { margin: 18px auto 4px; width: 150px; height: 150px; padding: 10px; border-radius: 14px; background: #fff; display: grid; grid-template-columns: repeat(21, 1fr); }
+  .qr i { display: block; }
+  .qr i.on { background: #0e0e11; }
+  .rows { margin: 18px 16px 0; display: grid; gap: 10px; }
+  .rows div { height: 44px; border-radius: 14px; background: rgb(255 255 255 / 0.04); }
+
+  /* Floating service chips */
+  .chip {
+    position: absolute; z-index: 5; display: inline-flex; align-items: center; gap: 9px;
+    padding: 9px 15px; border-radius: 999px; border: 1px solid rgb(255 255 255 / 0.12);
+    background: rgb(19 19 23 / 0.92); box-shadow: 0 14px 30px -10px rgb(0 0 0 / 0.8);
+    font-family: 'JetBrains Mono', monospace; font-size: 15px; font-weight: 500; color: var(--ink-200);
+  }
+  .chip i { width: 7px; height: 7px; border-radius: 50%; background: var(--accent-500); box-shadow: 0 0 10px var(--accent-500); }
+</style>
+</head>
+<body>
+<div class="canvas">
+  <div class="glow"></div>
+  <div class="grid"></div>
+
+  <!-- Left: identity -->
+  <div class="left">
+    <div class="brand">
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="14" fill="#09090b"/>
+        <rect x="0.5" y="0.5" width="63" height="63" rx="13.5" fill="none" stroke="#3a3a43"/>
+        <path d="M20 22h24M32 22v22" stroke="#f4f2ed" stroke-width="6" stroke-linecap="round"/>
+        <circle cx="45" cy="43" r="4" fill="#4d7cff"/>
+      </svg>
+      <span>PORTFOLIO</span>
+    </div>
+
+    <div class="eyebrow"><i></i>Flutter Developer</div>
+    <h1>Trong Tran<em>.</em></h1>
+    <p class="tagline">Building mobile products that <b>solve real&#8209;world problems.</b></p>
+
+    <div class="stats">
+      <div class="stat"><strong>5<sup>+</sup></strong><span>Years experience</span></div>
+      <div class="stat"><strong>1M<sup>+</sup></strong><span>Downloads</span></div>
+      <div class="stat"><strong>15<sup>+</sup></strong><span>Team members</span></div>
+    </div>
+  </div>
+
+  <!-- Back phone: e-ticket -->
+  <div class="phone back">
+    <div class="screen">
+      <div class="island"></div>
+      <div class="status"><span>9:41</span><span>●●●</span></div>
+      <div class="ticket">
+        <div class="bar" style="width: 55%"></div>
+        <div class="bar dim" style="width: 35%; margin-top: 8px"></div>
+        <div class="qr" id="qr"></div>
+      </div>
+      <div class="rows"><div></div><div></div><div></div></div>
+    </div>
+  </div>
+
+  <!-- Front phone: live tracking -->
+  <div class="phone front">
+    <div class="screen">
+      <div class="island"></div>
+      <div class="status"><span>9:41</span><span>●●●</span></div>
+      <div class="app-head">
+        <div><h3>Route 19</h3><small>12 stops · every 8 min</small></div>
+        <span class="live"><i></i>LIVE</span>
+      </div>
+
+      <div class="map">
+        <svg viewBox="0 0 220 230" fill="none">
+          <defs>
+            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4" /></filter>
+            <radialGradient id="pulse"><stop offset="0" stop-color="#4d7cff" stop-opacity="0.55"/><stop offset="1" stop-color="#4d7cff" stop-opacity="0"/></radialGradient>
+          </defs>
+          <!-- park + water -->
+          <rect x="132" y="20" width="70" height="52" rx="10" fill="#15201a"/>
+          <path d="M-10 186 C 40 170, 80 205, 130 190 S 210 170, 240 182 L 240 240 L -10 240 Z" fill="#101a2b"/>
+          <!-- streets -->
+          <g stroke="#26262d" stroke-linecap="round">
+            <path d="M-10 54 L 240 40" stroke-width="7"/>
+            <path d="M-10 128 L 240 112" stroke-width="9"/>
+            <path d="M54 -10 L 70 240" stroke-width="7"/>
+            <path d="M150 -10 L 160 240" stroke-width="6"/>
+            <path d="M-10 90 L 120 84" stroke-width="3"/>
+            <path d="M100 -10 L 112 170" stroke-width="3"/>
+            <path d="M170 140 L 240 150" stroke-width="3"/>
+            <path d="M20 160 L 140 152" stroke-width="3"/>
+          </g>
+          <!-- route -->
+          <path d="M22 206 L 66 160 L 64 126 L 154 116 L 158 64 L 206 44" stroke="#4d7cff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity="0.5" filter="url(#glow)"/>
+          <path d="M22 206 L 66 160 L 64 126 L 154 116 L 158 64 L 206 44" stroke="#4d7cff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M154 116 L 158 64 L 206 44" stroke="#a9bdff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1 8"/>
+          <g fill="#0e0e11" stroke="#a9bdff" stroke-width="2.5">
+            <circle cx="22" cy="206" r="5"/><circle cx="66" cy="160" r="5"/><circle cx="158" cy="64" r="5"/><circle cx="206" cy="44" r="5"/>
+          </g>
+          <!-- bus -->
+          <circle cx="112" cy="121" r="26" fill="url(#pulse)"/>
+          <circle cx="112" cy="121" r="12" fill="#4d7cff" stroke="#fff" stroke-width="3"/>
+          <rect x="106.5" y="115.5" width="11" height="9" rx="2.5" fill="#fff"/>
+          <rect x="108" y="117" width="8" height="3" rx="1" fill="#4d7cff"/>
+        </svg>
+      </div>
+
+      <div class="sheet">
+        <div class="row">
+          <div><label>Next bus arrives in</label><div class="eta">3<span>min</span></div></div>
+          <div class="bus-pill">19</div>
+        </div>
+        <div class="progress"><i></i></div>
+        <div class="stops">
+          <div><b></b><s style="width: 62%"></s></div>
+          <div><b></b><s style="width: 44%"></s></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Service chips -->
+  <div class="chip" style="left: 766px; top: 70px"><i></i>Flutter</div>
+  <div class="chip" style="left: 1052px; top: 214px"><i></i>WebSocket</div>
+  <div class="chip" style="left: 738px; top: 470px"><i></i>Firebase</div>
+</div>
+
+<script>
+  // Deterministic QR-like pattern with the three finder squares.
+  const N = 21, qr = document.getElementById('qr');
+  let seed = 7;
+  const rand = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  const finder = (r, c) => {
+    for (const [fr, fc] of [[0, 0], [0, N - 7], [N - 7, 0]]) {
+      const y = r - fr, x = c - fc;
+      if (y >= 0 && y < 7 && x >= 0 && x < 7) {
+        const ring = Math.min(y, x, 6 - y, 6 - x);
+        return ring !== 1;
+      }
+      if (y >= -1 && y <= 7 && x >= -1 && x <= 7) return false;
+    }
+    return null;
+  };
+  for (let r = 0; r < N; r++) {
+    for (let c = 0; c < N; c++) {
+      const f = finder(r, c);
+      const on = f === null ? rand() > 0.52 : f;
+      const cell = document.createElement('i');
+      if (on) cell.className = 'on';
+      qr.appendChild(cell);
+    }
+  }
+</script>
+</body>
+</html>
