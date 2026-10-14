@@ -96,7 +96,20 @@ export function Experience() {
                   </span>
                   <div>
                     <p className="font-semibold text-ink-950">{item.degree}</p>
-                    <p className="mt-0.5 text-paper-600">{item.institution}</p>
+                    <p className="mt-0.5 text-paper-600">
+                      {item.url ? (
+                        <a
+                          href={item.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="underline decoration-paper-300 underline-offset-2 transition-colors hover:text-ink-950"
+                        >
+                          {item.institution}
+                        </a>
+                      ) : (
+                        item.institution
+                      )}
+                    </p>
                     <p className="mt-2 font-mono text-xs text-paper-500">
                       {item.period}
                       {item.detail && <> · {item.detail}</>}

@@ -75,6 +75,7 @@ export interface ExperienceItem {
 
 export interface EducationItem {
   institution: string;
+  url?: string;
   degree: string;
   period: string;
   detail?: string;

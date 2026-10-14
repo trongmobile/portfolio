@@ -1,11 +1,20 @@
-import { useEffect, useState, type ReactNode } from 'react';
-import { ArrowDown, ArrowUpRight, Check, Copy, Download, Mail, MapPin, Phone } from 'lucide-react';
-import { siteConfig } from '@/data/siteConfig';
-import { t } from '@/i18n';
-import { cn, publicUrl } from '@/lib/utils';
-import { Section } from '@/components/layout/Section';
-import { Reveal } from '@/components/ui/Reveal';
-import { GitHubIcon, LinkedInIcon } from '@/components/ui/BrandIcons';
+import { useEffect, useState, type ReactNode } from "react";
+import {
+  ArrowDown,
+  ArrowUpRight,
+  Check,
+  Copy,
+  Download,
+  Mail,
+  MapPin,
+  Phone,
+} from "lucide-react";
+import { siteConfig } from "@/data/siteConfig";
+import { t } from "@/i18n";
+import { cn, publicUrl } from "@/lib/utils";
+import { Section } from "@/components/layout/Section";
+import { Reveal } from "@/components/ui/Reveal";
+import { GitHubIcon, LinkedInIcon } from "@/components/ui/BrandIcons";
 
 interface ContactMethod {
   id: string;
@@ -18,7 +27,7 @@ interface ContactMethod {
 }
 
 function prettyUrl(url: string) {
-  return url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
+  return url.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "");
 }
 
 export function Contact() {
@@ -41,9 +50,9 @@ export function Contact() {
     }
   };
 
-  const candidates: (ContactMethod | false | null | '')[] = [
+  const candidates: (ContactMethod | false | null | "")[] = [
     linkedin && {
-      id: 'linkedin',
+      id: "linkedin",
       label: t.contact.linkedin,
       value: prettyUrl(linkedin),
       href: linkedin,
@@ -51,7 +60,7 @@ export function Contact() {
       external: true,
     },
     github && {
-      id: 'github',
+      id: "github",
       label: t.contact.github,
       value: prettyUrl(github),
       href: github,
@@ -59,14 +68,14 @@ export function Contact() {
       external: true,
     },
     phone && {
-      id: 'phone',
+      id: "phone",
       label: t.contact.phone,
       value: phone,
-      href: `tel:${phone.replace(/[^\d+]/g, '')}`,
+      href: `tel:${phone.replace(/[^\d+]/g, "")}`,
       icon: <Phone className="h-5 w-5" aria-hidden="true" />,
     },
     siteConfig.cvPath && {
-      id: 'cv',
+      id: "cv",
       label: t.contact.cv,
       value: t.contact.cvMeta,
       href: publicUrl(siteConfig.cvPath),
@@ -77,8 +86,15 @@ export function Contact() {
   const methods = candidates.filter((m): m is ContactMethod => Boolean(m));
 
   return (
-    <Section id="contact" tone="dark" className="overflow-hidden border-t border-white/[0.06] pb-20 sm:pb-24">
-      <div aria-hidden="true" className="bg-grid pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_20%,transparent_70%)]" />
+    <Section
+      id="contact"
+      tone="dark"
+      className="overflow-hidden border-t border-white/[0.06] pb-20 sm:pb-24"
+    >
+      <div
+        aria-hidden="true"
+        className="bg-grid pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_20%,transparent_70%)]"
+      />
       <div className="container-page relative">
         <Reveal className="mx-auto max-w-3xl text-center">
           <p className="eyebrow inline-flex items-center gap-3 text-accent-400">
@@ -86,14 +102,22 @@ export function Contact() {
             {t.contact.eyebrow}
             <span aria-hidden="true" className="h-px w-6 bg-accent-400/60" />
           </p>
-          <h2 id="contact-title" className="mt-6 text-balance text-display-sm font-semibold text-white sm:text-display lg:text-display-lg">
+          <h2
+            id="contact-title"
+            className="mt-6 text-balance text-display-sm font-semibold text-white sm:text-display lg:text-display-lg"
+          >
             {t.contact.title}
           </h2>
-          <p className="mx-auto mt-6 max-w-xl text-pretty text-lg leading-relaxed text-ink-400">{t.contact.text}</p>
+          <p className="mx-auto mt-6 max-w-xl text-pretty text-lg leading-relaxed text-ink-400">
+            {t.contact.text}
+          </p>
         </Reveal>
 
         {email && (
-          <Reveal delay={0.1} className="mt-12 flex flex-col items-center gap-3">
+          <Reveal
+            delay={0.1}
+            className="mt-12 flex flex-col items-center gap-3"
+          >
             <div className="flex w-full max-w-md items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] p-1.5 sm:w-auto sm:max-w-none">
               <a
                 href={`mailto:${email}`}
@@ -109,32 +133,59 @@ export function Contact() {
                 title={t.contact.copyEmail}
                 className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-ink-300 transition-colors hover:bg-white/[0.07] hover:text-white"
               >
-                {copied ? <Check className="h-4 w-4 text-accent-400" aria-hidden="true" /> : <Copy className="h-4 w-4" aria-hidden="true" />}
+                {copied ? (
+                  <Check
+                    className="h-4 w-4 text-accent-400"
+                    aria-hidden="true"
+                  />
+                ) : (
+                  <Copy className="h-4 w-4" aria-hidden="true" />
+                )}
               </button>
             </div>
             <p className="h-5 text-xs text-accent-400" aria-live="polite">
-              {copied ? t.contact.copied : ''}
+              {copied ? t.contact.copied : ""}
             </p>
           </Reveal>
         )}
 
         {methods.length > 0 && (
           <Reveal delay={0.15}>
-            <ul className={cn('mx-auto mt-6 grid gap-3', methods.length > 1 ? 'max-w-3xl sm:grid-cols-2' : 'max-w-md')}>
+            <ul
+              className={cn(
+                "mx-auto mt-6 grid gap-3",
+                methods.length > 1 ? "max-w-3xl sm:grid-cols-2" : "max-w-md",
+              )}
+            >
               {methods.map((method) => (
-                <li key={method.id} className={methods.length > 1 && methods.length % 2 === 1 && method === methods[methods.length - 1] ? 'sm:col-span-2' : undefined}>
+                <li
+                  key={method.id}
+                  className={
+                    methods.length > 1 &&
+                    methods.length % 2 === 1 &&
+                    method === methods[methods.length - 1]
+                      ? "sm:col-span-2"
+                      : undefined
+                  }
+                >
                   <a
                     href={method.href}
-                    {...(method.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                    {...(method.download ? { download: '' } : {})}
+                    {...(method.external
+                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      : {})}
+                    {...(method.download ? { download: "" } : {})}
                     className="group flex min-h-[64px] items-center gap-4 rounded-2xl border border-white/[0.08] bg-white/[0.02] px-5 py-4 transition-colors duration-200 hover:border-white/20 hover:bg-white/[0.05]"
                   >
                     <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/[0.06] text-ink-200">
                       {method.icon}
                     </span>
                     <span className="min-w-0 flex-1">
-                      <span className="block text-sm font-medium text-white">{method.label}</span>
-                      <span className="block truncate text-xs text-ink-400">{method.value}</span>
+                      <span className="block text-sm font-medium text-white">
+                        {method.label}
+                      </span>
+                      <span className="block truncate text-xs text-ink-400">
+                        {method.value}
+                      </span>
                     </span>
                     {method.download ? (
                       <ArrowDown
@@ -154,13 +205,13 @@ export function Contact() {
           </Reveal>
         )}
 
-        {siteConfig.location && (
+        {/* {siteConfig.location && (
           <p className="mt-10 flex items-center justify-center gap-1.5 text-sm text-ink-400">
             <MapPin className="h-4 w-4" aria-hidden="true" />
             <span className="sr-only">{t.contact.location}: </span>
             {t.site.location}
           </p>
-        )}
+        )} */}
       </div>
     </Section>
   );

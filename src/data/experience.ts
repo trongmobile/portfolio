@@ -84,6 +84,7 @@ const educationContent: Translatable<EducationItem[]> = [
       en: 'University of Information Technology (UIT – VNU-HCM)',
       vi: 'Trường Đại học Công nghệ Thông tin (UIT – VNU-HCM)',
     },
+    url: 'https://www.uit.edu.vn',
     degree: { en: 'Bachelor of Computer Science', vi: 'Cử nhân Khoa học Máy tính' },
     period: '2016 – 2020',
     detail: 'GPA 8.1 / 10',

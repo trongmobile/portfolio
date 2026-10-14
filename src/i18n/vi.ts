@@ -1,4 +1,4 @@
-import type { Dictionary } from './en';
+import type { Dictionary } from "./en";
 
 /** Vietnamese UI copy. Same shape as `en.ts`. */
 export const vi: Dictionary = {
@@ -49,9 +49,9 @@ export const vi: Dictionary = {
   },
   about: {
     eyebrow: "Giới thiệu",
-    title: "Kỹ sư Flutter quan tâm đến toàn bộ sản phẩm.",
+    title: "Nhà phát triển ứng dụng di động quan tâm đến toàn bộ sản phẩm.",
     paragraphs: [
-      "Tôi là Flutter Developer tại FPT IS với hơn năm năm kinh nghiệm, phần lớn thời gian dành cho việc phát triển các ứng dụng di động đa nền tảng mà nhiều người sử dụng hằng ngày — vé metro, thông tin giao thông trực tuyến, theo dõi xe buýt, nhân sự và học trực tuyến.",
+      "Tôi là Flutter Developer tại FPT IS với hơn năm năm kinh nghiệm, phần lớn thời gian dành cho việc phát triển các ứng dụng di động đa nền tảng mà nhiều người sử dụng hằng ngày — vé metro, thông tin giao thông trực tuyến, thông tin xe buýt, nhân sự và học trực tuyến.",
       "Tôi chú trọng kiến trúc dễ bảo trì: phân tầng rõ ràng với Bloc và Clean Architecture, quản lý trạng thái nhất quán, tích hợp cẩn thận với REST API, WebSocket, Firebase và các dịch vụ thanh toán. Tôi đưa ứng dụng đi từ yêu cầu ban đầu đến khi phát hành trên Google Play và App Store.",
       "Tôi làm việc chặt chẽ với BA, Designer, Backend, QA, PM và PO, dẫn dắt một nhóm Flutter nhỏ, đồng thời dành nhiều thời gian cho code review và hướng dẫn thành viên. Tôi muốn xây dựng phần mềm ổn định, dễ thay đổi và thực sự hữu ích với người dùng.",
     ],
@@ -68,7 +68,7 @@ export const vi: Dictionary = {
     eyebrow: "Kinh nghiệm",
     title: "Những nơi tôi đã làm việc.",
     description:
-      "Từ nền tảng web đến dẫn dắt phát triển Flutter cho các sản phẩm khu vực công và doanh nghiệp.",
+      "Từ nền tảng web đến dẫn dắt phát triển Flutter cho các sản phẩm dịch vụ công và doanh nghiệp.",
     educationTitle: "Học vấn",
     current: "Hiện tại",
   },
@@ -80,7 +80,8 @@ export const vi: Dictionary = {
     filterLabel: "Lọc dự án theo lĩnh vực",
     viewDetails: "Xem chi tiết",
     moreTitle: "Dự án khác",
-    moreDescription: "Các ứng dụng khác, phiên bản theo địa phương và Zalo Mini App.",
+    moreDescription:
+      "Các ứng dụng khác, phiên bản theo địa phương và Zalo Mini App.",
     empty: "Chưa có dự án nào trong lĩnh vực này.",
     showing: (count: number) => `${count} dự án`,
     dialog: {
@@ -133,7 +134,11 @@ export const vi: Dictionary = {
     title: "Bảng lệnh",
     placeholder: "Nhập lệnh hoặc tìm kiếm…",
     empty: "Không có lệnh phù hợp.",
-    groups: { navigate: "Điều hướng", actions: "Thao tác", secret: "Đã mở khoá" },
+    groups: {
+      navigate: "Điều hướng",
+      actions: "Thao tác",
+      secret: "Đã mở khoá",
+    },
     goTo: (section: string) => `Đến mục ${section}`,
     downloadCv: "Tải CV",
     copyEmail: "Sao chép địa chỉ email",
@@ -142,7 +147,6 @@ export const vi: Dictionary = {
     devModeOff: "Tắt dev mode",
     sudoHire: "sudo hire",
     footer: "↑↓ để di chuyển · Enter để chọn · Esc để đóng",
-    secretHint: "Có vài lệnh đang được giấu kín.",
   },
   toast: {
     emailCopied: "Đã sao chép địa chỉ email",

@@ -143,7 +143,6 @@ export const en = {
     devModeOff: "Disable dev mode",
     sudoHire: "sudo hire",
     footer: "↑↓ to move · Enter to select · Esc to close",
-    secretHint: "Some commands are hidden.",
   },
   toast: {
     emailCopied: "Email address copied",
