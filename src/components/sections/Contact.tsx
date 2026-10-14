@@ -6,7 +6,6 @@ import {
   Copy,
   Download,
   Mail,
-  MapPin,
   Phone,
 } from "lucide-react";
 import { siteConfig } from "@/data/siteConfig";
